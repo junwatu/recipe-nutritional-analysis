@@ -1,4 +1,4 @@
-# Using AI for Recipe Nutrition Analysis
+# Using Wolfram and AI for Recipe Nutrition Analysis
 
 ![recipe nutrition analysis cover](images/cover.jpg)
 
