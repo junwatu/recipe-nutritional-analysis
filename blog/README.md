@@ -53,13 +53,40 @@ To build this project, you need the following steps:
 
 ### 2. Installing Node.js
 
-1. Download and install Node.js from [nodejs.org](https://nodejs.org/).
-2. Verify the installation by running `node -v` and `npm -v` in your terminal.
+This project will run on the Node.js platform. You need to install it from [here](https://nodejs.org/en/download). For this project, we will use the `nvm` package manager and Node.js v16.20.2
+LTS version.
+
+```shell
+# installs nvm (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# download and install Node.js
+nvm install 16
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v16.20.2`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `8.19.4``
+```
+
+To connect Node.js and GridDB database, you need the [gridb-node-api](https://github.com/nodejs/node-addon-api) npm package which is a Node.js binding developed using GridDB C Client and Node addon API.
 
 ### 3. Setting Up GridDB
 
-1. Download and install GridDB from [griddb.net](https://griddb.net/).
-2. Follow the installation instructions to set up GridDB on your system.
+We will use the GridDB database to save recipes and it's nutrition analysis. Please look at the [guide](https://docs.griddb.net/latest/gettingstarted/using-apt/#install-with-apt-get) for detailed installation. We will use Ubuntu 20.04 LTS here.
+
+Run GridDB and check if the service is running. Use this command:
+
+```shell
+sudo systemctl status gridstore
+```
+
+If not running try to run the database with this command:
+
+```shell
+sudo systemctl start gridstore
+```
 
 ### 4. Configuring OpenAI
 
