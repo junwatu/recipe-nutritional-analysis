@@ -110,7 +110,7 @@ recipe-nutrition-analysis/app/
 │   └── (assets and compiled files)
 ├── src/
 │   ├── App.jsx
-│   ├── main.jsx
+│   └── main.jsx
 ├── .env
 ├── .env.example
 ├── index.html
