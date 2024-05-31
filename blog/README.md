@@ -143,11 +143,13 @@ api = APIFunction[
 CloudDeploy[api]
 ```
 
-If you use the Shift + Enter key in the Wolfram Cloud editor, the script will be processed and deployed. Wolfram Cloud will generate API where you can use to analyze and calculate the recipe nutrition.
+The function parameter is `ingredients` with `String` type and if you use the `Shift` + `Enter` key in the Wolfram Cloud editor, the script will be processed and deployed. The result is cloud object that contain URL for API.
 
 ```wolfram
 CloudObject[https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65]
 ```
+
+With this API, you can use it to analyze and calculate the recipe nutrition.
 
 ### Storing Data in GridDB
 
