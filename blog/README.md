@@ -105,18 +105,18 @@ The OpenAI key will be saved on the `.env` file and make sure not to include it 
 Outline the directory and file structure for the project:
 
 ```shell
-recipe-nutrition-analysis/
-├── images/
-│   └── cover.jpg
+recipe-nutrition-analysis/app/
+├── public/
+│   └── (assets and compiled files)
 ├── src/
-│   ├── index.js
-│   ├── wolframClient.js
-│   ├── openaiClient.js
-│   ├── gridDBClient.js
-│   └── utils.js
+│   ├── App.jsx
+│   ├── main.jsx
 ├── .env
+├── .env.example
+├── index.html
 ├── package.json
 └── README.md
+└── vite.config.js
 ```
 
 ## Implementation
