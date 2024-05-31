@@ -149,6 +149,3 @@ Detail the steps and code to save the analyzed data into GridDB.
 
 Summarize the tutorial and discuss potential improvements or next steps for the project.
 
----
-
-This structure ensures that each critical aspect of the tutorial is covered in a logical and easy-to-follow manner.
