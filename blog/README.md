@@ -14,7 +14,7 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
     3. [Setting Up GridDB](#setting-up-griddb)
     4. [Configuring OpenAI](#configuring-openai)
 4. [Project Structure](#project-structure)
-5. [Implementation](#implementation)
+5. [How it Works?](#how-it-works)
     1. [Connecting to Wolfram Cloud](#connecting-to-wolfram-cloud)
     2. [Retrieving Recipe Data](#retrieving-recipe-data)
     3. [Analyzing Nutrition Data](#analyzing-nutrition-data)
