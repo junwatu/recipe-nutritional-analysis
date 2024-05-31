@@ -115,7 +115,7 @@ recipe-nutrition-analysis/app/
 ├── .env.example
 ├── index.html
 ├── package.json
-└── README.md
+├── README.md
 └── vite.config.js
 ```
 
