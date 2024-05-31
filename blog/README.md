@@ -23,7 +23,7 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
 
 ## Introduction
 
-In this tutorial, we will walk you through the process of building a nutrition analysis tool for recipes using Wolfram Cloud and OpenAI. We will use Node.js for the backend and store the resulting data in GridDB.
+This tutorial will walk you through building a nutrition analysis tool for recipes using Wolfram Cloud and OpenAI. We will use Node.js for the backend and store the resulting data in GridDB.
 
 ## Running the Project
 
@@ -33,7 +33,7 @@ Clone the project from this [GitHub](https://github.com/junwatu/recipe-nutrition
 git clone https://github.com/junwatu/recipe-nutritional-analysis.git
 ```
 
-Change the directory to the project root and go to the `app` folder then install all dependencies:
+Change the directory to the project root and go to the `app` folder then install all the dependencies:
 
 ```shell
 cd recipe-nutritional-analysis
@@ -41,7 +41,7 @@ cd app
 npm install
 ```
 
-
+Create the `.env` file and copy environment variables from `.env.example`
 
 ## Getting Started
 
@@ -49,7 +49,7 @@ To build this project, you need the following steps:
 
 ### Setting Up Wolfram Cloud Account
 
-[Sign up](https://www.wolframcloud.com) for a Wolfram Cloud account. You will need Wolfram to calculate recipe nutrition using the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function.
+[Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account. You will need Wolfram to calculate recipe nutrition using the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function.
 
 ### Installing Node.js
 
