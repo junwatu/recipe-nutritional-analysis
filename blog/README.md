@@ -27,11 +27,25 @@ In this tutorial, we will walk you through the process of building a nutrition a
 
 ## Running the Project
 
-Instructions on how to run the project, including any necessary commands and configuration steps.
+Clone the project from this [GitHub](https://github.com/junwatu/recipe-nutritional-analysis.git) repository.
+
+```shell
+git clone https://github.com/junwatu/recipe-nutritional-analysis.git
+```
+
+Change the directory to the project root and go to the `app` folder then install all dependencies:
+
+```shell
+cd recipe-nutritional-analysis
+cd app
+npm install
+```
+
+
 
 ## Getting Started
 
-To build this project, you need these following steps:
+To build this project, you need the following steps:
 
 ### Setting Up Wolfram Cloud Account
 
