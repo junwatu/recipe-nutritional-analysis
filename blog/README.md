@@ -143,7 +143,7 @@ api = APIFunction[
 CloudDeploy[api]
 ```
 
-If you use the Shift + Enter key in the Wolfram Cloud editor, the script will be processed and deployed. Wolfram Cloud will generate API where you can use to analyze and calculate the recipe.
+If you use the Shift + Enter key in the Wolfram Cloud editor, the script will be processed and deployed. Wolfram Cloud will generate API where you can use to analyze and calculate the recipe nutrition.
 
 ```wolfram
 CloudObject[https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65]
