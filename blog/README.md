@@ -139,7 +139,11 @@ Create a function to calculate recipe nutrition using Wolfram Language in the Wo
 api = APIFunction[
   {"ingredients" -> "String"},
   ResourceFunction["NutritionReport"][#ingredients, "ASCIITable"] &]
+
+CloudDeploy[api]
 ```
+
+If you use Shift + Enter key in the Wolfram Cloud editor, the above script will be processed and deployed.
 
 ### Storing Data in GridDB
 
