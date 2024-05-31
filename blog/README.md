@@ -41,27 +41,27 @@ cd app
 npm install
 ```
 
-Create the `.env` file and copy environment variables from `.env.example`
+Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go here for explanation.
 
 ## Getting Started
 
 To build this project, you need the following steps:
 
-### Setting Up Wolfram Cloud Account
+### 1. Setting Up Wolfram Cloud Account
 
 [Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account. You will need Wolfram to calculate recipe nutrition using the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function.
 
-### Installing Node.js
+### 2. Installing Node.js
 
 1. Download and install Node.js from [nodejs.org](https://nodejs.org/).
 2. Verify the installation by running `node -v` and `npm -v` in your terminal.
 
-### Setting Up GridDB
+### 3. Setting Up GridDB
 
 1. Download and install GridDB from [griddb.net](https://griddb.net/).
 2. Follow the installation instructions to set up GridDB on your system.
 
-### Configuring OpenAI
+### 4. Configuring OpenAI
 
 1. Sign up for an OpenAI account.
 2. Obtain your API key from the OpenAI dashboard.
