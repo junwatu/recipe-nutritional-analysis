@@ -9,11 +9,10 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
 1. [Introduction](#introduction)
 2. [Running the Project](#running-the-project)
 3. [Getting Started](#getting-started)
-    1. [Requirements](#requirements)
-    2. [Setting Up Wolfram Cloud Account](#setting-up-wolfram-cloud-account)
-    3. [Installing Node.js](#installing-nodejs)
-    4. [Setting Up GridDB](#setting-up-griddb)
-    5. [Configuring OpenAI](#configuring-openai)
+    1. [Setting Up Wolfram Cloud Account](#setting-up-wolfram-cloud-account)
+    2. [Installing Node.js](#installing-nodejs)
+    3. [Setting Up GridDB](#setting-up-griddb)
+    4. [Configuring OpenAI](#configuring-openai)
 4. [Project Structure](#project-structure)
 5. [Implementation](#implementation)
     1. [Connecting to Wolfram Cloud](#connecting-to-wolfram-cloud)
@@ -32,19 +31,11 @@ Instructions on how to run the project, including any necessary commands and con
 
 ## Getting Started
 
-### Requirements
-
-To build this project, you need the following:
-
-- A Wolfram Cloud Account
-- Node.js
-- GridDB
-- OpenAI
+To build this project, you need these following steps:
 
 ### Setting Up Wolfram Cloud Account
 
-1. Sign up for a Wolfram Cloud account.
-2. Obtain your API key from the Wolfram Developer Portal.
+[Sign up](https://www.wolframcloud.com) for a Wolfram Cloud account. You will need Wolfram to calculate recipe nutrition using the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function.
 
 ### Installing Node.js
 
@@ -65,7 +56,7 @@ To build this project, you need the following:
 
 Outline the directory and file structure for the project:
 
-```
+```shell
 recipe-nutrition-analysis/
 ├── images/
 │   └── cover.jpg
@@ -93,6 +84,14 @@ Provide instructions and code snippets to fetch recipe data.
 ### Analyzing Nutrition Data
 
 Show how to use Wolfram and OpenAI to analyze the nutrition data from the recipe.
+
+Create a function to calculate recipe nutrition using Wolfram Language in the Wolfram Cloud editor.
+
+```wolfram
+api = APIFunction[
+  {"ingredients" -> "String"},
+  ResourceFunction["NutritionReport"][#ingredients, "ASCIITable"] &]
+```
 
 ### Storing Data in GridDB
 
