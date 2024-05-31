@@ -143,7 +143,7 @@ api = APIFunction[
 CloudDeploy[api]
 ```
 
-If you use Shift + Enter key in the Wolfram Cloud editor, the above script will be processed and deployed.
+If you use the Shift + Enter key in the Wolfram Cloud editor, the script will be processed and deployed.
 
 ### Storing Data in GridDB
 
