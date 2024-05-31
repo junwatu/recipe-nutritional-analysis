@@ -90,8 +90,13 @@ sudo systemctl start gridstore
 
 ### 4. Configuring OpenAI
 
-1. Sign up for an OpenAI account.
-2. Obtain your API key from the OpenAI dashboard.
+To access any OpenAI services, you need a valid key. Go to this [link](https://platform.openai.com/api-keys) and create a new OpenAI key.
+
+
+The OpenAI key is on a project basis, so we need to create a project first in the OpenAI platform and you need also to enable any models that you use on a project. For this project, we will need `gpt-4o` model.
+
+
+The OpenAI key will be saved on the `.env` file and make sure not to include it in version control by adding it to the `.gitignore`.
 
 ## Project Structure
 
