@@ -121,6 +121,10 @@ recipe-nutrition-analysis/app/
 
 ## How it Works?
 
+This system is designed to perform nutrition analysis on food recipes by integrating various services for efficient data processing and management. It uses Node.js as the central server to coordinate tasks between different components including Wolfram for computations, OpenAI for natural language processing, and GridDB for data storage.
+
+![system arch](images/food-recipe-app.png)
+
 ### Connecting to Wolfram Cloud
 
 Explain how to establish a connection to Wolfram Cloud using the API key.
