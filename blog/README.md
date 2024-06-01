@@ -127,7 +127,7 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 ### Connecting to Wolfram Cloud
 
-Explain how to establish a connection to Wolfram Cloud using the API key.
+To use any Wolfram functions the simplest way is by consume it using API call.
 
 ### Retrieving Recipe Data
 
