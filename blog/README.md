@@ -154,25 +154,36 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
 ### Analyzing Nutrition Data
 
-To analyze nutrition from the ingredients recipe
+To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke this API using Node.js:
 
-Create a function to calculate recipe nutrition using Wolfram Language in the Wolfram Cloud editor.
+```js
+import axios from 'axios'
+import { stringify } from 'querystring'
 
-```wolfram
-api = APIFunction[
-  {"ingredients" -> "String"},
-  ResourceFunction["NutritionReport"][#ingredients, "ASCIITable"] &]
+const baseUrl = 'https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65'
 
-CloudDeploy[api]
+export async function fetchRecipe(ingredients) {
+	const queryParams = stringify({ ingredients: ingredients.join('\n') })
+	const url = `${baseUrl}?${queryParams}`
+
+	try {
+		const response = await axios.get(url)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching recipe:', error)
+		throw error
+	}
+}
 ```
 
-The function parameter is `ingredients` with `String` type and if you use the `Shift` + `Enter` key in the Wolfram Cloud editor, the script will be processed and deployed. The result is a cloud object that contains a URL for API.
+Example usage:
 
-```wolfram
-CloudObject["https://www.wolframcloud.com/obj/3e3c40f2-ba3d-4c98-889f-f111cfb1e674"]
 ```
-
-You can use this API to analyze and calculate the recipe nutrition by calling the API and giving recipe ingredients as the URL parameters.
+const ingredientsList = ['2 ons flour', '1 teaspoon margarine']
+fetchRecipe(ingredientsList)
+	.then((data) => console.log(data))
+	.catch((error) => console.error(error))
+```
 
 ### Storing Data in GridDB
 
