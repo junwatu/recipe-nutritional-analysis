@@ -133,6 +133,10 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 ![system arch](images/food-recipe-app.png)
 
+### Retrieving Recipe Data
+
+In this project the recipe data can be paste or directly typed into the text area and then submitted to the Node.js server (more on this later).
+
 ### Connecting to Wolfram Cloud
 
 The simplest way to use any Wolfram function is by consuming it using an API call. These are the general steps to deploy a function written in Wolfram language so it can be used as an API.
@@ -148,13 +152,9 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
    ![deploy API](images/deploy-api.png)
 
-### Retrieving Recipe Data
-
-In this project the recipe data can be paste or directly typed into the text area and then submitted to the Node.js server (more on this later).
-
 ### Analyzing Nutrition Data
 
-To analyze nutrition from the r
+To analyze nutrition from the ingredients recipe
 
 Create a function to calculate recipe nutrition using Wolfram Language in the Wolfram Cloud editor.
 
