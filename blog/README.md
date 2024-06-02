@@ -9,16 +9,20 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
 1. [Introduction](#introduction)
 2. [Running the Project](#running-the-project)
 3. [Getting Started](#getting-started)
-    1. [Setting Up Wolfram Cloud Account](#setting-up-wolfram-cloud-account)
-    2. [Installing Node.js](#installing-nodejs)
-    3. [Setting Up GridDB](#setting-up-griddb)
-    4. [Configuring OpenAI](#configuring-openai)
+
+    3.1 [Setting Up Wolfram Cloud Account](#setting-up-wolfram-cloud-account)
+
+    3.2 [Installing Node.js](#installing-nodejs)
+
+    3.3 [Setting Up GridDB](#setting-up-griddb)
+
+    3.4 [Configuring OpenAI](#configuring-openai)
 4. [Project Structure](#project-structure)
 5. [How it Works?](#how-it-works)
-    1. [Connecting to Wolfram Cloud](#connecting-to-wolfram-cloud)
-    2. [Retrieving Recipe Data](#retrieving-recipe-data)
-    3. [Analyzing Nutrition Data](#analyzing-nutrition-data)
-    4. [Storing Data in GridDB](#storing-data-in-griddb)
+    5.1 [Connecting to Wolfram Cloud](#connecting-to-wolfram-cloud)
+    5.2 [Retrieving Recipe Data](#retrieving-recipe-data)
+    5.3 [Analyzing Nutrition Data](#analyzing-nutrition-data)
+    5.4 [Storing Data in GridDB](#storing-data-in-griddb)
 6. [Conclusion](#conclusion)
 
 ## Introduction
@@ -132,8 +136,6 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
 2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
 
-    
-
 ### Retrieving Recipe Data
 
 Provide instructions and code snippets to fetch recipe data.
@@ -167,4 +169,3 @@ Detail the steps and code to save the analyzed data into GridDB.
 ## Conclusion
 
 Summarize the tutorial and discuss potential improvements or next steps for the project.
-
