@@ -7,10 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npx @dotenvx/dotenvx run -- node server.js",
+    "start:build": "npm run build && npm start"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^0.44.1",
     "axios": "^1.7.2",
+    "openai": "^4.47.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
