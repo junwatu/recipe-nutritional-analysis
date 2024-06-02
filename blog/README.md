@@ -154,7 +154,9 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
 ### Analyzing Nutrition Data
 
-To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke this API using Node.js:
+To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. 
+
+It's easy to invoke the API using Node.js. For example the `fetchRecipe` function will calculate the recipe nutrition based on the `ingredients` parameter:
 
 ```js
 import axios from 'axios'
@@ -178,7 +180,7 @@ export async function fetchRecipe(ingredients) {
 
 Example usage:
 
-```
+```js
 const ingredientsList = ['2 ons flour', '1 teaspoon margarine']
 fetchRecipe(ingredientsList)
 	.then((data) => console.log(data))
