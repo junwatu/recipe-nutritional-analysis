@@ -132,6 +132,7 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
 2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
 
+    
 
 ### Retrieving Recipe Data
 
