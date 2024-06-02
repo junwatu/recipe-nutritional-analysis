@@ -139,6 +139,14 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
 1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
 2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
+  
+   ![wolfram notebook](images/wolfram-notebook.png)
+
+   To execute or evalute a function in Wolfram notebook, you can press `shift` + `enter` keys. This is neede to make sure the function is execute correctly before deploy it into a production.
+
+3. Deploy the function into an API using the `CloudDeploy` function and after the deployment, you will get an API URL.
+
+   ![deploy API](images/deploy-api.png)
 
 ### Retrieving Recipe Data
 
