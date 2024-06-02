@@ -41,7 +41,7 @@ cd app
 npm install
 ```
 
-Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go here for explanation.
+Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go here for the explanation.
 
 ## Getting Started
 
@@ -127,7 +127,12 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 ### Connecting to Wolfram Cloud
 
-To use any Wolfram functions the simplest way is by consume it using API call.
+The simplest way to use any Wolfram function is by consuming it using an API call. These are the general steps to deploy a function written in Wolfram language so it can be used as an API.
+
+1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
+2. Code a function to analyze recipe nutrition. 
+   We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
+
 
 ### Retrieving Recipe Data
 
@@ -147,13 +152,13 @@ api = APIFunction[
 CloudDeploy[api]
 ```
 
-The function parameter is `ingredients` with `String` type and if you use the `Shift` + `Enter` key in the Wolfram Cloud editor, the script will be processed and deployed. The result is cloud object that contain URL for API.
+The function parameter is `ingredients` with `String` type and if you use the `Shift` + `Enter` key in the Wolfram Cloud editor, the script will be processed and deployed. The result is a cloud object that contains a URL for API.
 
 ```wolfram
 CloudObject[https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65]
 ```
 
-With this API, you can use it to analyze and calculate the recipe nutrition.
+You can use this API to analyze and calculate the recipe nutrition by calling the API and giving recipe ingredients as the URL parameters.
 
 ### Storing Data in GridDB
 
