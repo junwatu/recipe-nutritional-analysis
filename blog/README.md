@@ -49,7 +49,7 @@ To build this project, you need the following steps:
 
 ### 1. Setting Up Wolfram Cloud Account
 
-[Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account. You will need Wolfram to calculate recipe nutrition using the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function.
+[Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account.
 
 ### 2. Installing Node.js
 
@@ -130,8 +130,7 @@ This system is designed to perform nutrition analysis on food recipes by integra
 The simplest way to use any Wolfram function is by consuming it using an API call. These are the general steps to deploy a function written in Wolfram language so it can be used as an API.
 
 1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
-2. Code a function to analyze recipe nutrition. 
-   We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
+2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
 
 
 ### Retrieving Recipe Data
