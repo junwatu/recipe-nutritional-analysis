@@ -110,7 +110,7 @@ The OpenAI key will be saved on the `.env` file and make sure not to include it 
 
 ## Project Structure
 
-This project use Vite, React, and Node.js so the project structure is initially already defined. The directory and file structure for this project:
+This project uses Vite, React, and Node.js so the project structure is initially already defined. The directory and file structure for this project:
 
 ```shell
 recipe-nutrition-analysis/app/
@@ -142,7 +142,7 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
   
    ![wolfram notebook](images/wolfram-notebook.png)
 
-   To execute or evalute a function in Wolfram notebook, you can press `shift` + `enter` keys. This is neede to make sure the function is execute correctly before deploy it into a production.
+   To execute or evaluate a function in Wolfram notebook, you can press `shift` + `enter` keys. This is needed to make sure the function is executed correctly before deploying it into production.
 
 3. Deploy the function into an API using the `CloudDeploy` function and after the deployment, you will get an API URL.
 
@@ -169,7 +169,7 @@ CloudDeploy[api]
 The function parameter is `ingredients` with `String` type and if you use the `Shift` + `Enter` key in the Wolfram Cloud editor, the script will be processed and deployed. The result is a cloud object that contains a URL for API.
 
 ```wolfram
-CloudObject[https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65]
+CloudObject["https://www.wolframcloud.com/obj/3e3c40f2-ba3d-4c98-889f-f111cfb1e674"]
 ```
 
 You can use this API to analyze and calculate the recipe nutrition by calling the API and giving recipe ingredients as the URL parameters.
