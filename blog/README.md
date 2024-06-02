@@ -130,8 +130,6 @@ recipe-nutrition-analysis/app/
 
 The `server.js` file is the server code. It has three main routes:
 
-Here’s the updated Markdown table with the specified routes:
-
 | Route         | Method | Description                                                                        |
 |---------------|--------|------------------------------------------------------------------------------------|
 | `/analyze`    | POST   | Accepts a recipe in JSON format and returns nutritional analysis of the recipe.     |
