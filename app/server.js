@@ -5,9 +5,9 @@ import express from 'express'
 
 const app = express()
 // eslint-disable-next-line no-undef
-const apiUrl = new URL(process.env.VITE_API_URL)
-const hostname = apiUrl.hostname
-const port = apiUrl.port || 4000
+const apiURL = new URL(process.env.VITE_API_URL)
+const hostname = apiURL.hostname
+const port = apiURL.port || 4000
 
 app.use(express.json())
 app.use(express.static(path.join(path.resolve(), 'public')))
@@ -18,6 +18,9 @@ app.get('/', (req, res) => {
 
 app.post('/analyze', async (req, res) => {
 	const { ingredients } = req.body
+
+	// check with OpenAI here and use function calling to Wolfram Cloud
+
 	if (!ingredients || !Array.isArray(ingredients)) {
 		return res.status(400).json({ error: 'Invalid ingredients format' })
 	}
