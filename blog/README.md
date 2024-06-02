@@ -150,11 +150,11 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
 ### Retrieving Recipe Data
 
-Provide instructions and code snippets to fetch recipe data.
+In this project the recipe data can be paste or directly typed into the text area and then submitted to the Node.js server (more on this later).
 
 ### Analyzing Nutrition Data
 
-Show how to use Wolfram and OpenAI to analyze the nutrition data from the recipe.
+To analyze nutrition from the r
 
 Create a function to calculate recipe nutrition using Wolfram Language in the Wolfram Cloud editor.
 
