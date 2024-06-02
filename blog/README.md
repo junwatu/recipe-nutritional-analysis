@@ -136,7 +136,6 @@ The `server.js` file is the server code. It has three main routes:
 | `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
 | `/`     | GET    | Root. Returns the main user interface.                                           |
 
-Let me know if there are any other changes you need!
 
 ## How it Works?
 
