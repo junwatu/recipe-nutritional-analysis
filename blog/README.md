@@ -110,7 +110,7 @@ The OpenAI key will be saved on the `.env` file and make sure not to include it 
 
 ## Project Structure
 
-This project uses Vite, React, and Node.js so the project structure is initially already defined. The directory and file structure for this project:
+This project uses Vite for the development tools, React for the user interface, and Node.js as the server. The directory and file structure for this project:
 
 ```shell
 recipe-nutrition-analysis/app/
