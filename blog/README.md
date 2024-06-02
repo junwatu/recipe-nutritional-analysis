@@ -175,16 +175,16 @@ import { stringify } from 'querystring'
 const baseUrl = 'https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65'
 
 export async function fetchRecipe(ingredients) {
-	const queryParams = stringify({ ingredients: ingredients.join('\n') })
-	const url = `${baseUrl}?${queryParams}`
+  const queryParams = stringify({ ingredients: ingredients.join('\n') })
+  const url = `${baseUrl}?${queryParams}`
 
-	try {
-		const response = await axios.get(url)
-		return response.data
-	} catch (error) {
-		console.error('Error fetching recipe:', error)
-		throw error
-	}
+  try {
+  const response = await axios.get(url)
+    return response.data
+  } catch (error) {
+    console.error('Error fetching recipe:', error)
+    throw error
+  }
 }
 ```
 
@@ -193,8 +193,8 @@ Example usage:
 ```js
 const ingredientsList = ['2 ons flour', '1 teaspoon margarine']
 fetchRecipe(ingredientsList)
-	.then((data) => console.log(data))
-	.catch((error) => console.error(error))
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error))
 ```
 
 ### Storing Data in GridDB
