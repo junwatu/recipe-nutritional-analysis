@@ -123,9 +123,22 @@ recipe-nutrition-analysis/app/
 ├── .env.example
 ├── index.html
 ├── package.json
+├── server.js
 ├── README.md
 └── vite.config.js
 ```
+
+The `server.js` file is the server code. It has three main routes:
+
+Here’s the updated Markdown table with the specified routes:
+
+| Route         | Method | Description                                                                        |
+|---------------|--------|------------------------------------------------------------------------------------|
+| `/analyze`    | POST   | Accepts a recipe in JSON format and returns nutritional analysis of the recipe.     |
+| `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
+| `/`     | GET    | Root. Returns the main user interface.                                           |
+
+Let me know if there are any other changes you need!
 
 ## How it Works?
 
