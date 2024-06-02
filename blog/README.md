@@ -57,7 +57,7 @@ To build this project, you need the following steps:
 
 ### 1. Setting Up Wolfram Cloud Account
 
-[Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account.
+[Sign up](https://www.wolframcloud.com) for the Wolfram Cloud account. You will need it later to create a service for recipe nutrition calculation.
 
 ### 2. Installing Node.js
 
@@ -110,7 +110,7 @@ The OpenAI key will be saved on the `.env` file and make sure not to include it 
 
 ## Project Structure
 
-Outline the directory and file structure for the project:
+This project use Vite, React, and Node.js so the project structure is initially already defined. The directory and file structure for this project:
 
 ```shell
 recipe-nutrition-analysis/app/
