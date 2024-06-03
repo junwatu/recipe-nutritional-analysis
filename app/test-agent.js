@@ -1,7 +1,6 @@
-import { agent } from "./libs/ai";
+import { agent } from "./libs/ai.js";
 
-
-const result = agent(`600 g chicken drumsticks
+await agent(`600 g chicken drumsticks
 
 2 cloves garlic
 	(minced)
@@ -25,5 +24,3 @@ const result = agent(`600 g chicken drumsticks
 1 tbsp brown sugar
 
 vegetable oil`)
-
-console.log(result)
