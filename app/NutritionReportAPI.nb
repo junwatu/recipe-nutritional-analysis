@@ -1,0 +1,23 @@
+Notebook[{Cell[
+BoxData[""],"Input",ExpressionUUID -> "43c1691f-e908-46f3-b24e-74325fb61d49"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{"api"," ","="," ",RowBox[{"APIFunction","[","\n","  ",RowBox[
+{RowBox[{"{",RowBox[{"\"ingredients\""," ","\[Rule]"," ","\"String\""}],"}"}],",","\n","  ",RowBox[
+{RowBox[{RowBox[{"ResourceFunction","[","\"NutritionReport\"","]"}],"[",RowBox[{"#ingredients",","," ","\"ASCIITable\""}],"]"}]," ","&"}]}],"]"}]}]],
+"Input",CellLabel -> "In[1]:= ",ExpressionUUID -> "006feb00-dfea-4a7e-aac2-8c79d64d6f0a"],Cell[
+BoxData[
+RowBox[{"APIFunction","[",RowBox[{RowBox[{"{",RowBox[{"\"ingredients\"","\[Rule]","\"String\""}],"}"}],",",RowBox[
+{RowBox[{RowBox[{"ResourceFunction","[","\"NutritionReport\"","]"}],"[",RowBox[{"#ingredients",",","\"ASCIITable\""}],"]"}],"&"}]}],"]"}],
+StandardForm],"Output",CellLabel -> "Out[1]= ",ExpressionUUID -> "ba4ef8c3-c1d6-4425-962a-64273e1e5b87"]},
+Open],ExpressionUUID -> "3604b8df-30ea-4b7d-91fc-56e97108160f"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{"CloudDeploy","[","api","]"}]],"Input",NumberMarks -> False,
+CellLabel -> "In[2]:= ",ExpressionUUID -> "32c9e110-c1d7-4411-8c05-0044c9a8ed39"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[{"\"https://www.wolframcloud.com/obj/3e3c40f2-ba3d-4c98-889f-f111cfb1e674\"","https://www.wolframcloud.com/obj/3e3c40f2-ba3d-4c98-889f-f111cfb1e674"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/obj/3e3c40f2-ba3d-4c98-889f-f111cfb1e674"],
+SelectWithContents -> True],StandardForm],"Output",CellLabel -> "Out[2]= ",ExpressionUUID -> "891a91b7-ef5d-414f-adf2-b7d6aac3d8c2"]},
+Open],ExpressionUUID -> "4e363000-f50b-42d0-ac76-f56e426d2390"]},StyleDefinitions -> "Default.nb",
+FrontEndVersion -> "14. for Wolfram Cloud 1.68 (February 7, 2024)"]
