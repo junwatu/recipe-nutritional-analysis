@@ -24,15 +24,20 @@ const cleanupDataPrompt = async (recipe) => {
 
     Recipe>\n
 	
-	${recipe}`
+	${recipe}
+	
+	
+	\nAnd use the list of ingredients result for nutrition analyze.
+	`
 
 	return prompt
 }
+
 const tools = [{
 	type: "function",
 	function: {
 		name: "analyzeIngredients",
-		description: "Analyze a list of ingredients using the Wolfram Cloud API",
+		description: "Analyze the nutrition for a list of ingredients using the Wolfram Cloud API",
 		parameters: {
 			type: "object",
 			properties: {
