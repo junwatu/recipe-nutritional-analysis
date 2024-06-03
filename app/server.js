@@ -2,12 +2,19 @@ import path from 'path'
 import axios from 'axios'
 import { URL } from 'url'
 import express from 'express'
+import OpenAI from 'openai'
 
 const app = express()
 // eslint-disable-next-line no-undef
 const apiURL = new URL(process.env.VITE_API_URL)
 const hostname = apiURL.hostname
 const port = apiURL.port || 4000
+
+const openai = new OpenAI({
+	// eslint-disable-next-line no-undef
+	apiKey: process.env.OPENAI_API_KEY,
+	dangerouslyAllowBrowser: true,
+});
 
 app.use(express.json())
 app.use(express.static(path.join(path.resolve(), 'public')))
