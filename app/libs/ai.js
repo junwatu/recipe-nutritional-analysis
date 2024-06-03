@@ -22,7 +22,7 @@ const cleanupDataPrompt = async (recipe) => {
         2 tbsp black pepper
         1 tbsp white pepper
 
-        Recipe>\n
+    Recipe>\n
 	
 	${recipe}
  
