@@ -9,25 +9,24 @@ const messages = [
 
 // eslint-disable-next-line no-unused-vars
 const cleanupDataPrompt = async (recipe) => {
-	const prompt = ` Cleanup this recipe so the ingredients is arranged line by line. remove any how to. Shorten any long ingredient description separate by comma. Answer with recipe list only.
+	const prompt = ` Cleanup this recipe so the ingredients are arranged line by line. remove any how-to. Shorten any long ingredient description separated by a comma. Answer with the recipe list only.
 	
 	Example:
 
-    600 g chicken drumsticks
-    2 cloves garlic, (minced)
-    1 tsp ginger, (minced)
-    1 shallot, finely chopped
-    4 tbsp soy sauce
-    4 tbsp oyster sauce
-    2 tbsp black pepper
-    1 tbsp white pepper
+        600 g chicken drumsticks
+        2 cloves garlic, (minced)
+        1 tsp ginger, (minced)
+        1 shallot, finely chopped
+        4 tbsp soy sauce
+        4 tbsp oyster sauce
+        2 tbsp black pepper
+        1 tbsp white pepper
 
-    Recipe>\n
+        Recipe>\n
 	
 	${recipe}
-	
-	
-	\nAnd use the list of ingredients result for nutrition analyze.
+ 
+	\nAnd use the list of ingredient results for nutrition analysis.
 	`
 
 	return prompt
