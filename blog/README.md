@@ -162,7 +162,7 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
    ![deploy API](images/deploy-api.png)
 
-   You can find the notebook file in the project source code or directly from this [link]().
+   You can find the notebook file in the project source code or directly from this [link](https://github.com/junwatu/recipe-nutritional-analysis/blob/main/app/NutritionReportAPI.nb) and then you can upload it to the Wolfram Cloud.
 
 ### Analyzing Nutrition Data
 
