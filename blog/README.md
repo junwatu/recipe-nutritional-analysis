@@ -162,6 +162,8 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
    ![deploy API](images/deploy-api.png)
 
+   You can find the notebook file in the project source code or directly from this [link]().
+
 ### Analyzing Nutrition Data
 
 To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke the API using Node.js. For example, the `fetchRecipe` function will calculate the recipe nutrition based on the `ingredients` parameter:
