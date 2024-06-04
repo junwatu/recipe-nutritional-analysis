@@ -128,14 +128,6 @@ recipe-nutrition-analysis/app/
 └── vite.config.js
 ```
 
-The `server.js` file is the server code. It has three main routes:
-
-| Route         | Method | Description                                                                        |
-|---------------|--------|------------------------------------------------------------------------------------|
-| `/analyze`    | POST   | Accepts a recipe in JSON format and returns nutritional analysis of the recipe.     |
-| `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
-| `/`     | GET    | Root. Returns the main user interface.                                           |
-
 
 ## How it Works?
 
@@ -279,6 +271,15 @@ if (finish_reason === "tool_calls" && message.tool_calls) {
 Which function to invoke? If there are more than two functions in the `availableTools`, OpenAI will be smart enough to decide when and which function to invoke in the `availableTools` array. 
 
 ### Node.js Server
+
+The `server.js` file is the server code. It has three main routes:
+
+| Route         | Method | Description                                                                        |
+|---------------|--------|------------------------------------------------------------------------------------|
+| `/analyze`    | POST   | Accepts a recipe in JSON format and returns nutritional analysis of the recipe.     |
+| `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
+| `/`     | GET    | Root. Returns the main user interface.                                           |
+
 
 ### Storing Data in GridDB
 
