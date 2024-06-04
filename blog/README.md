@@ -143,6 +143,25 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 ![system arch](images/food-recipe-app.png)
 
+### Connecting to Wolfram Cloud
+
+The simplest way to use any Wolfram function is by consuming it using an API call. These are the general steps to deploy a function written in Wolfram language so it can be used as an API.
+
+1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
+2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
+  
+   ![wolfram notebook](images/wolfram-notebook.png)
+
+   To execute or evaluate a function in Wolfram notebook, you can press `shift` + `enter` keys. This is needed to make sure the function is executed correctly before deploying it into production.
+
+3. Deploy the function into an API using the `CloudDeploy` function and after the deployment, you will get an API URL.
+
+   ![deploy API](images/deploy-api.png)
+
+   You can find the notebook file in the project source code or directly from this [link](https://github.com/junwatu/recipe-nutritional-analysis/blob/main/app/NutritionReportAPI.nb) and then you can upload it to the Wolfram Cloud.
+
+4. Call the API from OpenAI using the [function calling](https://platform.openai.com/docs/guides/function-calling) feature.
+
 ### Retrieving Recipe Data
 
 In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this later). To clean up the recipe data, you can use AI to filter and format the data. In this project, we will use OpenAI to clean the recipe data and format it so the Wolfram function can process it.
@@ -208,26 +227,6 @@ export async function agent(userInput) {
 ```
 
 After the Wolfram function does the nutritional analysis, the result will be sent back to the OpenAI for another processing which is formatting the data into a markdown formatted text.
-
-
-### Connecting to Wolfram Cloud
-
-The simplest way to use any Wolfram function is by consuming it using an API call. These are the general steps to deploy a function written in Wolfram language so it can be used as an API.
-
-1. Create a new [notebook](https://reference.wolfram.com/language/guide/NotebookBasics.html) in Wolfram Cloud.
-2. Code a function to analyze recipe nutrition. We will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function to calculate the recipe nutrition.
-  
-   ![wolfram notebook](images/wolfram-notebook.png)
-
-   To execute or evaluate a function in Wolfram notebook, you can press `shift` + `enter` keys. This is needed to make sure the function is executed correctly before deploying it into production.
-
-3. Deploy the function into an API using the `CloudDeploy` function and after the deployment, you will get an API URL.
-
-   ![deploy API](images/deploy-api.png)
-
-   You can find the notebook file in the project source code or directly from this [link](https://github.com/junwatu/recipe-nutritional-analysis/blob/main/app/NutritionReportAPI.nb) and then you can upload it to the Wolfram Cloud.
-
-4. Call the API from OpenAI using the [function calling](https://platform.openai.com/docs/guides/function-calling) feature.
 
 ### Analyzing Nutrition Data
 
