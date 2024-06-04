@@ -78,11 +78,10 @@ export async function agent(userInput) {
 		const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
 		const functionArgsArr = Object.values(functionArgs);
 		const functionResponse = await functionToCall.apply(null, functionArgsArr);
-		console.log(functionResponse);
 
 		const readDataByAI = await openai.chat.completions.create({
 			model: "gpt-4o",
-			messages: [{ role: 'user', content: `create a markdown table from this nutrition data:\n ${functionResponse}\nFill the empty data if possible` }]
+			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a markdown table from this nutrition data:\n ${functionResponse}\n. Answer table data only.` }]
 		})
 
 		console.log(readDataByAI.choices[0].message);
