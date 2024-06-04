@@ -147,8 +147,61 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this later). To clean up the recipe data, you can use AI to filter and format the data. In this project, we will use OpenAI to clean the recipe data and format it so the Wolfram function can process it.
 
+In this code, the `agent` function will clean the recipe data and then call the Wolfram function through a function call indicated by the `tools_calls` properties.
 
+```js
+export async function agent(userInput) {
+	messages.push({
+		role: "user",
+		content: `Clean up this recipe so the ingredients are arranged line by line. remove any how-to. Shorten any long ingredient description separated by a comma. Answer with the recipe list only.
 
+			Example:
+
+	600 g chicken drumsticks
+	2 cloves garlic, (minced)
+	1 tsp ginger, (minced)
+	1 shallot, finely chopped
+	4 tbsp soy sauce
+	4 tbsp oyster sauce
+	2 tbsp black pepper
+	1 tbsp white pepper
+
+	Recipe >\n
+	
+	${userInput}
+
+	\nchange the ingredient name to match with the Wolfram database and use the list of ingredient results for nutrition analysis. 
+	`,
+	});
+
+	const response = await openai.chat.completions.create({
+		model: "gpt-4o",
+		messages: messages,
+		tools: tools,
+	});
+
+	console.log(response.choices[0].message?.tool_calls[0].function);
+	const { finish_reason, message } = response.choices[0];
+
+	if (finish_reason === "tool_calls" && message.tool_calls) {
+		const functionName = message.tool_calls[0].function.name;
+		const functionToCall = availableTools[functionName];
+		const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+		const functionArgsArr = Object.values(functionArgs);
+		const functionResponse = await functionToCall.apply(null, functionArgsArr);
+
+		const readDataByAI = await openai.chat.completions.create({
+			model: "gpt-4o",
+			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Answer table data only:\n ${functionResponse}\n` }]
+		})
+
+		console.log(readDataByAI.choices[0].message);
+		return readDataByAI.choices[0].message;
+	}
+}
+```
+
+After the Wolfram function does the nutritional analysis, the result will be sent back to the OpenAI for another processing which is formatting the data into a markdown formatted text.
 
 
 ### Connecting to Wolfram Cloud
