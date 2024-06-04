@@ -145,7 +145,11 @@ This system is designed to perform nutrition analysis on food recipes by integra
 
 ### Retrieving Recipe Data
 
-In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this later).
+In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this later). To clean up the recipe data, you can use AI to filter and format the data. In this project, we will use OpenAI to clean the recipe data and format it so the Wolfram function can process it.
+
+
+
+
 
 ### Connecting to Wolfram Cloud
 
@@ -164,16 +168,18 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
    You can find the notebook file in the project source code or directly from this [link](https://github.com/junwatu/recipe-nutritional-analysis/blob/main/app/NutritionReportAPI.nb) and then you can upload it to the Wolfram Cloud.
 
+4. Call the API from OpenAI using the [function calling](https://platform.openai.com/docs/guides/function-calling) feature.
+
 ### Analyzing Nutrition Data
 
-To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke the API using Node.js. For example, the `fetchRecipe` function will calculate the recipe nutrition based on the `ingredients` parameter:
+To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke the API using Node.js. For example, the `analyzeIngredients` function in the code below will calculate the recipe nutrition based on the `ingredients` parameter:
 
 ```js
+import axios from 'axios'
 
-app.post('/analyze', async (req, res) => {
-	const { ingredients } = req.body
+export const analyzeIngredients = async (ingredients) => {
 	if (!ingredients || !Array.isArray(ingredients)) {
-		return res.status(400).json({ error: 'Invalid ingredients format' })
+		throw new Error('Invalid ingredients format')
 	}
 
 	const params = new URLSearchParams({ ingredients: ingredients.join('\n') }).toString()
@@ -182,15 +188,15 @@ app.post('/analyze', async (req, res) => {
 
 	try {
 		const response = await axios.get(url)
-		res.json(response.data)
+		return response.data
 	} catch (error) {
 		console.error('Error fetching recipe:', error)
-		res.status(500).json({ error: 'Internal Server Error' })
+		throw new Error('Internal Server Error')
 	}
-})
+}
 ```
 
-
+The function will retrieve the `WOLFRAM_CLOUD_API` environment variable from the `.env` file. In the event of a URL change in the deployed API, you can update the new URL in this file.
 
 ### Storing Data in GridDB
 
