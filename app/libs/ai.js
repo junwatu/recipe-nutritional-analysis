@@ -85,6 +85,7 @@ export async function agent(userInput) {
 		})
 
 		console.log(readDataByAI.choices[0].message);
+		return readDataByAI.choices[0].message;
 	}
 }
 
