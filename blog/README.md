@@ -164,7 +164,7 @@ The simplest way to use any Wolfram function is by consuming it using an API cal
 
 ### Retrieving Recipe Data
 
-In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this later). To clean up the recipe data, you can use AI to filter and format the data. In this project, we will use OpenAI to clean the recipe data and format it so the Wolfram function can process it.
+In this project, the recipe data can be pasted or directly typed into the text area and then submitted to the Node.js server (more on this [here](#nodejs-server)). To clean up the recipe data, you can use AI to filter and format the data. In this project, we will use OpenAI to clean the recipe data and format it so the Wolfram function can process it.
 
 In this code, the `agent` function will clean the recipe data and then call the Wolfram function through a function call indicated by the `tool_calls` properties.
 
@@ -255,6 +255,8 @@ export const analyzeIngredients = async (ingredients) => {
 ```
 
 The function will retrieve the `WOLFRAM_CLOUD_API` environment variable from the `.env` file. In the event of a URL change in the deployed API, you can update the new URL in this file.
+
+### Node.js Server
 
 ### Storing Data in GridDB
 
