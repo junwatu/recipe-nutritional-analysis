@@ -1,4 +1,5 @@
 import OpenAI from 'openai'
+import { analyzeIngredients } from './wolfram.js';
 
 const messages = [
 	{
@@ -6,6 +7,10 @@ const messages = [
 		content: "You are a helpful assistant. Only use the functions you have been provided with.",
 	},
 ];
+
+const availableTools = {
+	analyzeIngredients
+};
 
 const tools = [{
 	type: "function",
@@ -54,9 +59,10 @@ export async function agent(userInput) {
 	
 	${userInput}
 
-	\nAnd use the list of ingredient results for nutrition analysis.
+	\nchange the ingredient name to match with Wolfram database and use the list of ingredient results for nutrition analysis. 
 	`,
 	});
+
 	const response = await openai.chat.completions.create({
 		model: "gpt-4o",
 		messages: messages,
@@ -64,6 +70,23 @@ export async function agent(userInput) {
 	});
 
 	console.log(response.choices[0].message?.tool_calls[0].function);
+	const { finish_reason, message } = response.choices[0];
+
+	if (finish_reason === "tool_calls" && message.tool_calls) {
+		const functionName = message.tool_calls[0].function.name;
+		const functionToCall = availableTools[functionName];
+		const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+		const functionArgsArr = Object.values(functionArgs);
+		const functionResponse = await functionToCall.apply(null, functionArgsArr);
+		console.log(functionResponse);
+
+		const readDataByAI = await openai.chat.completions.create({
+			model: "gpt-4o",
+			messages: [{ role: 'user', content: `create a markdown table from this nutrition data:\n ${functionResponse}\nFill the empty data if possible` }]
+		})
+
+		console.log(readDataByAI.choices[0].message);
+	}
 }
 
 export default openai;
