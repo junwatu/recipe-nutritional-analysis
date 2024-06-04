@@ -272,13 +272,31 @@ Which function to invoke? If there are more than two functions in the `available
 
 ### Node.js Server
 
-The `server.js` file is the server code. It has three main routes:
+The server code resides in the `server.js` file. It has three main routes:
 
 | Route         | Method | Description                                                                        |
 |---------------|--------|------------------------------------------------------------------------------------|
 | `/analyze`    | POST   | Accepts a recipe in JSON format and returns nutritional analysis of the recipe.     |
 | `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
 | `/`     | GET    | Root. Returns the main user interface.                                           |
+
+The recipe data will be sent to the `/analyze` route for nutritional analysis. The JSON data returned can then be displayed in the browser.
+
+```js
+app.post('/analyze', async (req, res) => {
+    const {
+        ingredients
+    } = req.body
+    try {
+        const data = await agent(ingredients)
+        res.json(data)
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
+})
+```
 
 
 ### Storing Data in GridDB
