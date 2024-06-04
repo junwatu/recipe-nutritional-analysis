@@ -230,7 +230,9 @@ After the Wolfram function does the nutritional analysis, the result will be sen
 
 ### Analyzing Nutrition Data
 
-To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke the API using Node.js. For example, the `analyzeIngredients` function in the code below will calculate the recipe nutrition based on the `ingredients` parameter:
+To analyze nutrition from the ingredients recipe, as mentioned before, we will use the [NutritionReport](https://resources.wolframcloud.com/FunctionRepository/resources/NutritionReport) function that is already deployed as an API. It's easy to invoke the API using Node.js. 
+
+For example, the `analyzeIngredients` function in the code below will calculate the recipe nutrition based on the `ingredients` parameter:
 
 ```js
 import axios from 'axios'
@@ -254,7 +256,27 @@ export const analyzeIngredients = async (ingredients) => {
 }
 ```
 
-The function will retrieve the `WOLFRAM_CLOUD_API` environment variable from the `.env` file. In the event of a URL change in the deployed API, you can update the new URL in this file.
+The function will retrieve the `WOLFRAM_CLOUD_API` environment variable from the `.env` file. In the event of a URL change in the deployed API, you can update the new URL in the `.env` file. This function will also be called from OpenAI through function calling.
+
+```js
+const availableTools = {
+	analyzeIngredients
+};
+
+// remove for clarity
+
+if (finish_reason === "tool_calls" && message.tool_calls) {
+        const functionName = message.tool_calls[0].function.name;
+        const functionToCall = availableTools[functionName];
+        const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+        const functionArgsArr = Object.values(functionArgs);
+        const functionResponse = await functionToCall.apply(null, functionArgsArr);
+
+        // remove for clarity
+}
+```
+
+Which function to invoke? If there are more than two functions in the `availableTools`, OpenAI will be smart enough to decide when and which function to invoke in the `availableTools` array. 
 
 ### Node.js Server
 
