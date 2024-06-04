@@ -151,9 +151,9 @@ In this code, the `agent` function will clean the recipe data and then call the 
 
 ```js
 export async function agent(userInput) {
-	messages.push({
-		role: "user",
-		content: `Clean up this recipe so the ingredients are arranged line by line. remove any how-to. Shorten any long ingredient description separated by a comma. Answer with the recipe list only.
+    messages.push({
+        role: "user",
+        content: `Clean up this recipe so the ingredients are arranged line by line. remove any how-to. Shorten any long ingredient description separated by a comma. Answer with the recipe list only.
 
 			Example:
 
@@ -172,32 +172,38 @@ export async function agent(userInput) {
 
 	\nchange the ingredient name to match with the Wolfram database and use the list of ingredient results for nutrition analysis. 
 	`,
-	});
+    });
 
-	const response = await openai.chat.completions.create({
-		model: "gpt-4o",
-		messages: messages,
-		tools: tools,
-	});
+    const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: messages,
+        tools: tools,
+    });
 
-	console.log(response.choices[0].message?.tool_calls[0].function);
-	const { finish_reason, message } = response.choices[0];
+    console.log(response.choices[0].message?.tool_calls[0].function);
+    const {
+        finish_reason,
+        message
+    } = response.choices[0];
 
-	if (finish_reason === "tool_calls" && message.tool_calls) {
-		const functionName = message.tool_calls[0].function.name;
-		const functionToCall = availableTools[functionName];
-		const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
-		const functionArgsArr = Object.values(functionArgs);
-		const functionResponse = await functionToCall.apply(null, functionArgsArr);
+    if (finish_reason === "tool_calls" && message.tool_calls) {
+        const functionName = message.tool_calls[0].function.name;
+        const functionToCall = availableTools[functionName];
+        const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+        const functionArgsArr = Object.values(functionArgs);
+        const functionResponse = await functionToCall.apply(null, functionArgsArr);
 
-		const readDataByAI = await openai.chat.completions.create({
-			model: "gpt-4o",
-			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Answer table data only:\n ${functionResponse}\n` }]
-		})
+        const readDataByAI = await openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [{
+                role: 'user',
+                content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Answer table data only:\n ${functionResponse}\n`
+            }]
+        })
 
-		console.log(readDataByAI.choices[0].message);
-		return readDataByAI.choices[0].message;
-	}
+        console.log(readDataByAI.choices[0].message);
+        return readDataByAI.choices[0].message;
+    }
 }
 ```
 
