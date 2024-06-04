@@ -26,8 +26,10 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
 
     5.3 [Analyzing Nutrition Data](#analyzing-nutrition-data)
 
-    5.4 [Storing Data in GridDB](#storing-data-in-griddb)
-6. [Conclusion](#conclusion)
+    5.4 [Node.js Server](#nodejs-server)
+
+    5.5 [Storing Data in GridDB](#storing-data-in-griddb)
+7. [Conclusion](#conclusion)
 
 ## Introduction
 
