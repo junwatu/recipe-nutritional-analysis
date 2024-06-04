@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 const griddb = require('griddb-node-api');
-const containerName = 'AIVideoSummarizer';
+const containerName = 'RecipeNutrition';
 
 const initStore = async () => {
 	const factory = griddb.StoreFactory.getInstance();
@@ -27,9 +27,9 @@ function initContainer() {
 		name: containerName,
 		columnInfoList: [
 			['id', griddb.Type.INTEGER],
-			['filename', griddb.Type.STRING],
-			['audiotranscription', griddb.Type.STRING],
-			['summary', griddb.Type.STRING]
+			['recipe', griddb.Type.STRING],
+			['nutrition', griddb.Type.STRING],
+			['ascii', griddb.Type.STRING]
 		],
 		type: griddb.ContainerType.COLLECTION,
 		rowKey: true,
@@ -60,58 +60,6 @@ async function initGridDbTS() {
 	}
 }
 
-/*
-async function containersInfo(store) {
-	for (
-		var index = 0;
-		index < store.partitionController.partitionCount;
-		index++
-	) {
-		store.partitionController
-			.getContainerNames(index, 0, -1)
-			.then((nameList) => {
-				nameList.forEach((element) => {
-					// Get container information
-					store.getContainerInfo(element).then((info) => {
-						if (info.name === containerName) {
-							console.log('Container Info: \n💽 %s', info.name);
-							if (info.type == griddb.ContainerType.COLLECTION) {
-								console.log('📦 Type: Collection');
-							} else {
-								console.log('📦 Type: TimeSeries');
-							}
-							//console.log("rowKeyAssigned=%s", info.rowKey.toString());
-							console.log(
-								'🛢️  Column Count: %d',
-								info.columnInfoList.length
-							);
-							info.columnInfoList.forEach((element) =>
-								console.log(
-									'🔖 Column (%s, %d)',
-									element[0],
-									element[1]
-								)
-							);
-						}
-					});
-				});
-				return true;
-			})
-			.catch((err) => {
-				if (err.constructor.name == 'GSException') {
-					for (var i = 0; i < err.getErrorStackSize(); i++) {
-						console.log('[%d]', i);
-						console.log(err.getErrorCode(i));
-						console.log(err.getMessage(i));
-					}
-				} else {
-					console.log(err);
-				}
-			});
-	}
-}
-*/
-
 async function containersInfo(store) {
 	let containers = [];
 	for (let index = 0; index < store.partitionController.partitionCount; index++) {
@@ -141,7 +89,6 @@ async function containersInfo(store) {
 	}
 	return containers;
 }
-
 
 /**
  * Insert data to GridDB
@@ -188,9 +135,9 @@ async function queryAll(conInfo, store) {
 			const row = rowset.next();
 			const rowData = {
 				id: `${row[0]}`,
-				filename: `${row[1]}`,
-				audioTranscription: `${row[2]}`,
-				summary: `${row[3]}`,
+				recipe: `${row[1]}`,
+				nutrition: `${row[2]}`,
+				ascii: `${row[3]}`,
 			};
 			results.push(rowData);
 		}
