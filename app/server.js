@@ -1,13 +1,14 @@
 import path from 'path'
 import { URL } from 'url'
 import express from 'express'
-import { analyzeIngredients } from './libs/wolfram'
+import { agent } from './libs/ai.js'
 
 const app = express()
 // eslint-disable-next-line no-undef
-const apiURL = new URL(process.env.VITE_API_URL)
+const apiURL = new URL(process.env.VITE_APP_URL)
 const hostname = apiURL.hostname
 const port = apiURL.port || 4000
+
 
 app.use(express.json())
 app.use(express.static(path.join(path.resolve(), 'public')))
@@ -18,9 +19,8 @@ app.get('/', (req, res) => {
 
 app.post('/analyze', async (req, res) => {
 	const { ingredients } = req.body
-
 	try {
-		const data = await analyzeIngredients(ingredients)
+		const data = await agent(ingredients)
 		res.json(data)
 	} catch (error) {
 		res.status(400).json({ error: error.message })
