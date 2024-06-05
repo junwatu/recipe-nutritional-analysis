@@ -130,7 +130,6 @@ recipe-nutrition-analysis/app/
 └── vite.config.js
 ```
 
-
 ## How it Works?
 
 This system is designed to perform nutrition analysis on food recipes by integrating various services for efficient data processing and management. It uses Node.js as the central server to coordinate tasks between different components including Wolfram for computations, OpenAI for natural language processing, and GridDB for data storage.
@@ -170,21 +169,20 @@ export async function agent(foodRecipe) {
 
         Example:
 
-	600 g chicken drumsticks
-	2 cloves garlic, (minced)
-	1 tsp ginger, (minced)
-	1 shallot, finely chopped
-	4 tbsp soy sauce
-	4 tbsp oyster sauce
-	2 tbsp black pepper
-	1 tbsp white pepper
+        600 g chicken drumsticks
+        2 cloves garlic, (minced)
+        1 tsp ginger, (minced)
+        1 shallot, finely chopped
+        4 tbsp soy sauce
+        4 tbsp oyster sauce
+        2 tbsp black pepper
+        1 tbsp white pepper
 
-	Recipe >\n
-	
-	${foodRecipe}
+        Recipe >\n
 
-	\nchange the ingredient name to match with the Wolfram database and use the list of ingredient results for nutrition analysis. 
-	`,
+        ${foodRecipe}
+
+        \nchange the ingredient name to match with the Wolfram database and use the list of ingredient results for nutrition analysis.`,
     });
 
     const response = await openai.chat.completions.create({
@@ -232,21 +230,21 @@ For example, the `analyzeIngredients` function in the code below will calculate 
 import axios from 'axios'
 
 export const analyzeIngredients = async (ingredients) => {
-	if (!ingredients || !Array.isArray(ingredients)) {
-		throw new Error('Invalid ingredients format')
-	}
+    if (!ingredients || !Array.isArray(ingredients)) {
+        throw new Error('Invalid ingredients format')
+    }
 
-	const params = new URLSearchParams({ ingredients: ingredients.join('\n') }).toString()
-	// eslint-disable-next-line no-undef
-	const url = `${process.env.WOLFRAM_CLOUD_API}?${params}`
+    const params = new URLSearchParams({ ingredients: ingredients.join('\n') }).toString()
+    // eslint-disable-next-line no-undef
+    const url = `${process.env.WOLFRAM_CLOUD_API}?${params}`
 
-	try {
-		const response = await axios.get(url)
-		return response.data
-	} catch (error) {
-		console.error('Error fetching recipe:', error)
-		throw new Error('Internal Server Error')
-	}
+    try {
+        const response = await axios.get(url)
+        return response.data
+    } catch (error) {
+        console.error('Error fetching recipe:', error)
+        throw new Error('Internal Server Error')
+    }
 }
 ```
 
@@ -254,7 +252,7 @@ The function will retrieve the `WOLFRAM_CLOUD_API` environment variable from the
 
 ```js
 const availableTools = {
-	analyzeIngredients
+    analyzeIngredients
 };
 
 // remove for clarity
