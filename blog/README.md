@@ -261,7 +261,9 @@ export const analyzeIngredients = async (ingredients) => {
         throw new Error('Invalid ingredients format')
     }
 
-    const params = new URLSearchParams({ ingredients: ingredients.join('\n') }).toString()
+    const params = new URLSearchParams({
+        ingredients: ingredients.join('\n')
+    }).toString()
     // eslint-disable-next-line no-undef
     const url = `${process.env.WOLFRAM_CLOUD_API}?${params}`
 
@@ -313,39 +315,47 @@ The nutrition data will be saved into the GridDB database through the `/analyze`
 
 ```js
 app.post('/analyze', async (req, res) => {
- const { ingredients } = req.body
- try {
-  const data = await agent(ingredients)
+    const {
+        ingredients
+    } = req.body
+    try {
+        const data = await agent(ingredients)
 
-  /**
-   * Save data to database
-   */
-  const nutritionData = {
-   recipe: data.recipe,
-   nutrition: data.nutrition,
-   ascii: data.ascii
-  }
+        /**
+         * Save data to database
+         */
+        const nutritionData = {
+            recipe: data.recipe,
+            nutrition: data.nutrition,
+            ascii: data.ascii
+        }
 
-  await saveData(nutritionData)
-  res.json(data)
- } catch (error) {
-  res.status(400).json({ error: error.message })
- }
+        await saveData(nutritionData)
+        res.json(data)
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
 })
 ```
 
 To save the data, you can look into the `saveData` function in the `griddbservices.js` file. The `id` field is auto-generated and the others are directly extracted from the `agent` response.
 
 ```js
-export async function saveData({ recipe, nutrition, ascii }) {
- const id = generateRandomID();
- const recipeIngredients = String(recipe);
- const nutritionDetails = String(nutrition);
- const asciiNutrition = String(ascii);
+export async function saveData({
+    recipe,
+    nutrition,
+    ascii
+}) {
+    const id = generateRandomID();
+    const recipeIngredients = String(recipe);
+    const nutritionDetails = String(nutrition);
+    const asciiNutrition = String(ascii);
 
- const packetInfo = [parseInt(id), recipeIngredients, nutritionDetails, asciiNutrition];
- const saveStatus = await GridDB.insert(packetInfo, collectionDb);
- return saveStatus;
+    const packetInfo = [parseInt(id), recipeIngredients, nutritionDetails, asciiNutrition];
+    const saveStatus = await GridDB.insert(packetInfo, collectionDb);
+    return saveStatus;
 }
 ```
 
@@ -353,19 +363,19 @@ Internally, the `initContainer` function in the `libs/griddb.cjs` file will init
 
 ```js
 function initContainer() {
- const conInfo = new griddb.ContainerInfo({
-  name: containerName,
-  columnInfoList: [
-   ['id', griddb.Type.INTEGER],
-   ['recipe', griddb.Type.STRING],
-   ['nutrition', griddb.Type.STRING],
-   ['ascii', griddb.Type.STRING]
-  ],
-  type: griddb.ContainerType.COLLECTION,
-  rowKey: true,
- });
+    const conInfo = new griddb.ContainerInfo({
+        name: containerName,
+        columnInfoList: [
+            ['id', griddb.Type.INTEGER],
+            ['recipe', griddb.Type.STRING],
+            ['nutrition', griddb.Type.STRING],
+            ['ascii', griddb.Type.STRING]
+        ],
+        type: griddb.ContainerType.COLLECTION,
+        rowKey: true,
+    });
 
- return conInfo;
+    return conInfo;
 }
 ```
 
