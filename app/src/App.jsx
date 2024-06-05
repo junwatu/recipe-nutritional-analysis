@@ -29,10 +29,11 @@ const App = () => {
 
 	const handleAnalyze = async () => {
 		setLoading(true)
-    setMarkdown('')
+        //setMarkdown('')
 		try {
 			const response = await axios.post('http://localhost:3000/analyze', { ingredients: recipe })
-			setMarkdown(response.data.content)
+			setMarkdown(response.data.nutrition)
+			console.log(markdown)
 		} catch (error) {
 			console.error('Error analyzing recipe:', error)
 		} finally {
