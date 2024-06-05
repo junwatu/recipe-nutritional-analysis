@@ -51,7 +51,7 @@ cd app
 npm install
 ```
 
-Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go here for the explanation.
+Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go [here](#4-configuring-openai) for the explanation.
 
 ## Getting Started
 
