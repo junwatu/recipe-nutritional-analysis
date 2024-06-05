@@ -59,7 +59,17 @@ VITE_APP_URL=http://localhost:4000
 WOLFRAM_CLOUD_API=https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65
 ```
 
-You need an [OpenAI API](#configuring-openai) key for this project and set it in the `OPENAI_API_KEY` environment variable. Please go [here](#4-configuring-openai) on how to get this API key. 
+You need an OpenAI API key for this project and set it in the `OPENAI_API_KEY` environment variable. Please go [here](#4-configuring-openai) on how to get this API key.
+
+Use this command to run the project:
+
+```shell
+npm run start:build
+```
+
+Open the browser and go to `http://localhost:4000`. Copy any food recipe on the internet and paste to the text area and then click the `Analyze` button to begin recipe nutrition analysis.
+
+![app screenshot](images/app-screenshot.png)
 
 ## Getting Started
 
