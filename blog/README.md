@@ -59,7 +59,7 @@ VITE_APP_URL=http://localhost:4000
 WOLFRAM_CLOUD_API=https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65
 ```
 
-You need an [OpenAI API](#configuring-openai) key for this project, please go [here](#4-configuring-openai) for the explanation.
+You need an [OpenAI API](#configuring-openai) key for this project and set it in the `OPENAI_API_KEY` environment variable. Please go [here](#4-configuring-openai) on how to get this API key. 
 
 ## Getting Started
 
