@@ -338,11 +338,11 @@ function initContainer() {
 }
 ```
 
-These are the details explanation of the data fields:
+These are the details explanations of the data fields:
 
 | Field      | Type    | Description                                 |
 |------------|---------|---------------------------------------------|
-| id         | INTEGER | Unique identifier for each entry. Auto generated.            |
+| id         | INTEGER | Unique identifier for each entry. Auto-generated.            |
 | recipe     | STRING  | Name or description of the recipe           |
 | nutrition  | STRING  | Nutritional information for the recipe      |
 | ascii      | STRING  | ASCII representation or related information |
@@ -362,8 +362,8 @@ export async function saveData({ recipe, nutrition, ascii }) {
 }
 ```
 
-You can get all the nutritions analysis data by call the `/nutritions` route.
+You can get all the nutrition analysis data by calling the `/nutritions` route.
 
 ## Conclusion
 
-This is a simple prototipe for nutritional analysis for the food recipe. You can make manu improvements such as build a mobile client and build better REST API features.
+This is a simple prototype for nutritional analysis of the food recipe. You can make many improvements such as building a mobile client and building better REST API features.
