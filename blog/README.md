@@ -132,19 +132,26 @@ The OpenAI key will be saved on the `.env` file and make sure not to include it 
 
 ## Project Structure
 
-This project uses Vite for the development tools, React for the user interface, and Node.js as the server. The directory and file structure for this project:
+This project uses Vite for the development tools, React for the user interface, and Node.js as the server. The directory and main file structure for this project:
 
 ```shell
 recipe-nutrition-analysis/app/
-├── public/
+├── dist/
 │   └── (assets and compiled files)
+├── libs/
+│   ├── ai.js
+│   ├── griddb.cjs
+│   ├── rangen.js
+│   └── wolfram.js
 ├── src/
 │   ├── App.jsx
+│   ├── App.css
 │   └── main.jsx
 ├── .env
 ├── .env.example
 ├── index.html
 ├── package.json
+├── griddbservices.js
 ├── server.js
 ├── README.md
 └── vite.config.js
@@ -278,13 +285,13 @@ const availableTools = {
 // remove for clarity
 
 if (finish_reason === "tool_calls" && message.tool_calls) {
-        const functionName = message.tool_calls[0].function.name;
-        const functionToCall = availableTools[functionName];
-        const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
-        const functionArgsArr = Object.values(functionArgs);
-        const functionResponse = await functionToCall.apply(null, functionArgsArr);
+    const functionName = message.tool_calls[0].function.name;
+    const functionToCall = availableTools[functionName];
+    const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+    const functionArgsArr = Object.values(functionArgs);
+    const functionResponse = await functionToCall.apply(null, functionArgsArr);
 
-        // remove for clarity
+    // remove for clarity
 }
 ```
 
