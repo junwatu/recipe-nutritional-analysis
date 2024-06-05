@@ -85,7 +85,13 @@ export async function agent(foodRecipe) {
 		})
 
 		console.log(readDataByAI.choices[0].message);
-		return readDataByAI.choices[0].message;
+
+		const foodRecipeNutrition = {
+			recipe: foodRecipe,
+			nutrition: readDataByAI.choices[0].message?.content,
+			ascii: functionResponse
+		}
+		return foodRecipeNutrition;
 	}
 }
 
