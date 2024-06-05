@@ -2,6 +2,7 @@ import path from 'path'
 import { URL } from 'url'
 import express from 'express'
 import { agent } from './libs/ai.js'
+//import { saveData, getAllData } from './griddbservices.js'
 
 const app = express()
 // eslint-disable-next-line no-undef
@@ -22,15 +23,30 @@ app.post('/analyze', async (req, res) => {
 	const { ingredients } = req.body
 	try {
 		const data = await agent(ingredients)
+
+		/**
+		 * Save data to database
+		 */
+		const nutritionData = {
+			recipe: data.recipe,
+			nutrition: data.nutrition,
+			ascii: data.ascii
+		}
+
+		console.log(nutritionData)
+		//await saveData(nutritionData)
 		res.json(data)
 	} catch (error) {
 		res.status(400).json({ error: error.message })
 	}
 })
 
-app.get('/nutritions', (req, res) => {
-	res.send('This route will handle nutrition information.')
+/**
+app.get('/nutritions', async (req, res) => {
+	const allNutritionsData = await getAllData()
+	res.json(allNutritionsData)
 })
+*/
 
 app.listen(port, hostname, () => {
 	console.log(`Server is running at http://${hostname}:${port}`)
