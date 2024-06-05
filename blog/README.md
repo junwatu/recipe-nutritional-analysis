@@ -366,4 +366,4 @@ You can get all the nutritions analysis data by call the `/nutritions` route.
 
 ## Conclusion
 
-Summarize the tutorial and discuss potential improvements or next steps for the project.
+This is a simple prototipe for nutritional analysis for the food recipe. You can make manu improvements such as build a mobile client and build better REST API features.
