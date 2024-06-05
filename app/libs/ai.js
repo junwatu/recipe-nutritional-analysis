@@ -39,7 +39,7 @@ const openai = new OpenAI({
 	dangerouslyAllowBrowser: true,
 });
 
-export async function agent(userInput) {
+export async function agent(foodRecipe) {
 	messages.push({
 		role: "user",
 		content: `Cleanup this recipe so the ingredients are arranged line by line.remove any how- to.Shorten any long ingredient description separated by a comma.Answer with the recipe list only.
@@ -57,7 +57,7 @@ export async function agent(userInput) {
 
 	Recipe >\n
 	
-	${userInput}
+	${foodRecipe}
 
 	\nchange the ingredient name to match with Wolfram database and use the list of ingredient results for nutrition analysis. 
 	`,
@@ -81,7 +81,7 @@ export async function agent(userInput) {
 
 		const readDataByAI = await openai.chat.completions.create({
 			model: "gpt-4o",
-			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a markdown table from this nutrition data:\n ${functionResponse}\n. Answer table data only.` }]
+			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Answer table data only:\n ${functionResponse}\n` }]
 		})
 
 		console.log(readDataByAI.choices[0].message);
