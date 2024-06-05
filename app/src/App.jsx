@@ -1,9 +1,16 @@
+import { useState } from 'react'
+import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './App.css'
 
-// eslint-disable-next-line react/prop-types
-const MarkdownContent = ({ content }) => {
+const App = () => {
+	const [recipe, setRecipe] = useState('')
+	const [markdown, setMarkdown] = useState('')
+	const [loading, setLoading] = useState(false)
+
+  // eslint-disable-next-line react/prop-types
+  const MarkdownContent = ({ content }) => {
 	return (
 		<ReactMarkdown
 			className="markdown-content"
@@ -20,30 +27,39 @@ const MarkdownContent = ({ content }) => {
 	)
 }
 
-const markdown = `
-### Nutrition Per Food
-| Input                    | Interpretation  | absolute calorie content | absolute fat content | absolute protein content | absolute carbohydrate content |
-|--------------------------|-----------------|--------------------------|----------------------|--------------------------|-------------------------------|
-| 600 g chicken drumsticks | 1100 Cal        | 60 g                     | 100 g                | 0 g                      | 0 g                           |
-| 2 cloves garlic          | 9 Cal           | 0 g                      | 0.4 g                | 2 g                      | 0 g                           |
-| 1 tsp ginger             | 2 Cal           | 0 g                      | 0 g                  | 0.2 g                    | 0.2 g                         |
-| 1 shallot                | 7 Cal           | 0 g                      | 0.2 g                | 1.7 g                    | 0 g                           |
-| 4 tbsp soy sauce         | 41 Cal          | 0 g                      | 8 g                  | 4 g                      | 0 g                           |
-| 4 tbsp oyster sauce      | 90 Cal          | 0 g                      | 0 g                  | 20 g                     | 0 g                           |
-| 2 tbsp black pepper      | 0 Cal           | 0 g                      | 0 g                  | 0 g                      | 0 g                           |
-| 1 tbsp white pepper      | 21 Cal          | 0.2 g                    | 0.7 g                | 5 g                      | 0 g                           |
+	const handleAnalyze = async () => {
+		setLoading(true)
+    setMarkdown('')
+		try {
+			const response = await axios.post('http://localhost:3000/analyze', { ingredients: recipe })
+			setMarkdown(response.data.content)
+		} catch (error) {
+			console.error('Error analyzing recipe:', error)
+		} finally {
+			setLoading(false)
+		}
+	}
 
-### Total Nutrition
-| absolute calorie content | absolute fat content | absolute protein content | absolute carbohydrate content |
-|--------------------------|----------------------|--------------------------|-------------------------------|
-| 1270 Cal                 | 60.2 g               | 109.3 g                  | 32.9 g                        |
-`
-
-const App = () => {
 	return (
 		<div>
-			<h1>Nutrition Information</h1>
-			<MarkdownContent content={markdown} />
+			<h1>Recipe Nutrition Analyzer</h1>
+			<textarea
+				value={recipe}
+				onChange={e => setRecipe(e.target.value)}
+				placeholder="Enter your recipe here"
+				rows="10"
+				cols="50"
+			/>
+			<br />
+			<button onClick={handleAnalyze} disabled={loading}>
+				{loading ? 'Analyzing...' : 'Analyze'}
+			</button>
+			{markdown && (
+				<div>
+					<h2>Nutrition Information</h2>
+					<MarkdownContent content={markdown} />
+				</div>
+			)}
 		</div>
 	)
 }
