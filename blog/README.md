@@ -342,10 +342,10 @@ These are the details explanations of the data fields:
 
 | Field      | Type    | Description                                 |
 |------------|---------|---------------------------------------------|
-| id         | INTEGER | Unique identifier for each entry. Auto-generated.            |
-| recipe     | STRING  | Name or description of the recipe           |
-| nutrition  | STRING  | Nutritional information for the recipe      |
-| ascii      | STRING  | ASCII representation or related information |
+| `id`         | `INTEGER` | Unique identifier for each entry. Auto-generated.            |
+| `recipe`     | `STRING`  | Name or description of the recipe           |
+| `nutrition`  | `STRING`  | Nutritional information for the recipe      |
+| `ascii`      | `STRING`  | ASCII representation or related information |
 
 To save the data, you can look into the `saveData` function in the `griddbservices.js` file. The `id` field is auto-generated and the others are directly extracted from the `agent` response.
 
