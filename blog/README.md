@@ -51,7 +51,15 @@ cd app
 npm install
 ```
 
-Create the `.env` file and copy environment variables from the `.env.example`. You need an [OpenAI API](#configuring-openai) key for this project, please go [here](#4-configuring-openai) for the explanation.
+Create the `.env` file and copy environment variables from the `.env.example`. There are three environment variables:
+
+```ini
+OPENAI_API_KEY=
+VITE_APP_URL=http://localhost:4000
+WOLFRAM_CLOUD_API=https://www.wolframcloud.com/obj/4a0af00b-e14e-4467-b292-6d0ca161ff65
+```
+
+You need an [OpenAI API](#configuring-openai) key for this project, please go [here](#4-configuring-openai) for the explanation.
 
 ## Getting Started
 
