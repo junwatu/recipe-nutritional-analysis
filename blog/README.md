@@ -300,27 +300,49 @@ The server code resides in the `server.js` file. It has three main routes:
 | `/nutritions` | GET    | Returns a list of all nutrition recipes that have been analyzed.                   |
 | `/`     | GET    | Root. Returns the main user interface.                                           |
 
-The recipe data will be sent to the `/analyze` route for nutritional analysis. The JSON data returned can then be displayed in the browser.
+### Storing Data in GridDB
+
+The nutrition data will be saved into the GridDB database through the `/analyze` server route. This server route will call the `saveData` function after successfull nutritional recipe analysis and the JSON data returned will be sending back to the browser.
 
 ```js
 app.post('/analyze', async (req, res) => {
-    const {
-        ingredients
-    } = req.body
-    try {
-        const data = await agent(ingredients)
-        res.json(data)
-    } catch (error) {
-        res.status(400).json({
-            error: error.message
-        })
-    }
+ const { ingredients } = req.body
+ try {
+  const data = await agent(ingredients)
+
+  /**
+   * Save data to database
+   */
+  const nutritionData = {
+   recipe: data.recipe,
+   nutrition: data.nutrition,
+   ascii: data.ascii
+  }
+
+  await saveData(nutritionData)
+  res.json(data)
+ } catch (error) {
+  res.status(400).json({ error: error.message })
+ }
 })
 ```
 
-### Storing Data in GridDB
+To save the data, you can look into the `saveData` function in the `griddbservices.js` file. The `id` field is auto-generated and the others are directly extracted from the `agent` response.
 
-The nutrition data will be saved into the GridDB database. The `initContainer` function will initialize any necessary fields in the container.
+```js
+export async function saveData({ recipe, nutrition, ascii }) {
+ const id = generateRandomID();
+ const recipeIngredients = String(recipe);
+ const nutritionDetails = String(nutrition);
+ const asciiNutrition = String(ascii);
+
+ const packetInfo = [parseInt(id), recipeIngredients, nutritionDetails, asciiNutrition];
+ const saveStatus = await GridDB.insert(packetInfo, collectionDb);
+ return saveStatus;
+}
+```
+
+Internally, the `initContainer` function in the `libs/griddb.cjs` file will initialize any necessary data fields in the container. Think about it like a schema or table.
 
 ```js
 function initContainer() {
@@ -349,24 +371,16 @@ These are the details explanations of the data fields:
 | `nutrition`  | `STRING`  | Nutritional information for the recipe      |
 | `ascii`      | `STRING`  | ASCII representation or related information |
 
-To save the data, you can look into the `saveData` function in the `griddbservices.js` file. The `id` field is auto-generated and the others are directly extracted from the `agent` response.
-
-```js
-export async function saveData({ recipe, nutrition, ascii }) {
- const id = generateRandomID();
- const recipeIngredients = String(recipe);
- const nutritionDetails = String(nutrition);
- const asciiNutrition = String(ascii);
-
- const packetInfo = [parseInt(id), recipeIngredients, nutritionDetails, asciiNutrition];
- const saveStatus = await GridDB.insert(packetInfo, collectionDb);
- return saveStatus;
-}
-```
-
 ### Get All Nutritions Data
 
 You can get all the nutrition analysis data by calling the `/nutritions` route.
+
+```js
+app.get('/nutritions', async (req, res) => {
+    const allNutritionsData = await getAllData()
+    res.json(allNutritionsData)
+})
+```
 
 ## Conclusion
 
