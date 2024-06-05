@@ -29,6 +29,8 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
     5.4 [Node.js Server](#nodejs-server)
 
     5.5 [Storing Data in GridDB](#storing-data-in-griddb)
+
+    5.6 [Get All Nutritions Data](#get-all-nutritions-data)
 7. [Conclusion](#conclusion)
 
 ## Introduction
@@ -361,6 +363,8 @@ export async function saveData({ recipe, nutrition, ascii }) {
  return saveStatus;
 }
 ```
+
+### Get All Nutritions Data
 
 You can get all the nutrition analysis data by calling the `/nutritions` route.
 
