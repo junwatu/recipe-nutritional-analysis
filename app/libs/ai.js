@@ -42,7 +42,7 @@ const openai = new OpenAI({
 export async function agent(foodRecipe) {
 	messages.push({
 		role: "user",
-		content: `Cleanup this recipe so the ingredients are arranged line by line.remove any how- to.Shorten any long ingredient description separated by a comma.Answer with the recipe list only.
+		content: `Cleanup this recipe so the ingredients are arranged line by line.remove any how- to.Shorten any long ingredient description separated by a comma.Be direct, answer with the recipe list only.
 
 			Example:
 
@@ -81,7 +81,7 @@ export async function agent(foodRecipe) {
 
 		const readDataByAI = await openai.chat.completions.create({
 			model: "gpt-4o",
-			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Answer table data only:\n ${functionResponse}\n` }]
+			messages: [{ role: 'user', content: `Fill the empty data if possible. Create a clean markdown table from this nutrition data. Be direct, answer with the table data only:\n ${functionResponse}\n` }]
 		})
 
 		console.log(readDataByAI.choices[0].message);
