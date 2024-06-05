@@ -11,10 +11,11 @@ const port = apiURL.port || 4000
 
 
 app.use(express.json())
-app.use(express.static(path.join(path.resolve(), 'public')))
+app.use(express.static(path.join(path.resolve(), 'dist')))
 
 app.get('/', (req, res) => {
-	res.send('Welcome to the Recipe Analyzer!')
+	// Serve the index.html file from the 'dist' folder
+	res.sendFile(path.join(path.resolve(), 'dist', 'index.html'))
 })
 
 app.post('/analyze', async (req, res) => {
