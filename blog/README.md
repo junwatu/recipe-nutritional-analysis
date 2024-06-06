@@ -379,7 +379,7 @@ function initContainer() {
 }
 ```
 
-These are the details explanations of the data fields:
+These are the detailed explanations of the data fields:
 
 | Field      | Type    | Description                                 |
 |------------|---------|---------------------------------------------|
@@ -388,7 +388,7 @@ These are the details explanations of the data fields:
 | `nutrition`  | `STRING`  | Nutritional information for the recipe      |
 | `ascii`      | `STRING`  | ASCII representation or related information |
 
-### Get All Nutritions Data
+### Get All Nutrition Data
 
 You can get all the nutrition analysis data by calling the `/nutritions` route.
 
@@ -397,6 +397,81 @@ app.get('/nutritions', async (req, res) => {
     const allNutritionsData = await getAllData()
     res.json(allNutritionsData)
 })
+```
+
+### User Interface
+
+React is used to build the user interface. There is only one file `App.jsx`
+
+```jsx
+import { useState } from 'react'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import './App.css'
+
+const App = () => {
+	const [recipe, setRecipe] = useState('')
+	const [markdown, setMarkdown] = useState('')
+	const [loading, setLoading] = useState(false)
+
+  // eslint-disable-next-line react/prop-types
+  const MarkdownContent = ({ content }) => {
+	return (
+		<ReactMarkdown
+			className="markdown-content"
+			remarkPlugins={[remarkGfm]}
+			components={{
+				// eslint-disable-next-line no-unused-vars
+				table: ({ node, ...props }) => (
+					<table className="markdown-table" {...props} />
+				),
+			}}
+		>
+			{content}
+		</ReactMarkdown>
+	)
+}
+
+	const handleAnalyze = async () => {
+		setLoading(true)
+        setMarkdown('')
+		try {
+			const response = await axios.post(`${import.meta.env.VITE_APP_URL}/analyze`, { ingredients: recipe })
+			setMarkdown(response.data.nutrition)
+			console.log(markdown)
+		} catch (error) {
+			console.error('Error analyzing recipe:', error)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	return (
+		<div>
+			<h1>Recipe Nutrition Analyzer</h1>
+			<textarea
+				value={recipe}
+				onChange={e => setRecipe(e.target.value)}
+				placeholder="Enter your recipe here"
+				rows="10"
+				cols="50"
+			/>
+			<br />
+			<button onClick={handleAnalyze} disabled={loading}>
+				{loading ? 'Analyzing...' : 'Analyze'}
+			</button>
+			{markdown && (
+				<div>
+					<h2>Nutrition Information</h2>
+					<MarkdownContent content={markdown} />
+				</div>
+			)}
+		</div>
+	)
+}
+
+export default App
 ```
 
 ## Conclusion
