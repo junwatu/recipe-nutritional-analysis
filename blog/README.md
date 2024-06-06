@@ -31,6 +31,8 @@ In this tutorial, you will learn how to analyze recipe nutrition using Wolfram C
     5.5 [Storing Data in GridDB](#storing-data-in-griddb)
 
     5.6 [Get All Nutritions Data](#get-all-nutritions-data)
+
+    5.7 [User Interface](#user-interface)
 7. [Conclusion](#conclusion)
 
 ## Introduction
@@ -401,7 +403,7 @@ app.get('/nutritions', async (req, res) => {
 
 ### User Interface
 
-React is used to build the user interface. There is only one file, `App.jsx`, whose main purpose is for the user to input food recipes and then the page will display the nutrition analysis data.
+React is used to build the user interface. The main file is `App.jsx`, whose main purpose is for the user to input food recipes and then the page will display the nutrition analysis data. 
 
 ```jsx
 import { useState } from "react";
@@ -476,6 +478,11 @@ const App = () => {
 
 export default App;
 ```
+
+The nutrition analysis workflow:
+
+1. The `handleAnalyze` function handles the submission of the recipe to a backend API for analysis. It manages the loading state, makes a POST request with the recipe data, and updates the markdown state with the response containing the nutrition information. If an error occurs, it logs the error to the console.
+2. The analyzed nutrition information is displayed using the `ReactMarkdown` component. This component formats the markdown content with GitHub Flavored Markdown (GFM) support, making it easy to render tables and other markdown elements in the response.
 
 ## Conclusion
 
