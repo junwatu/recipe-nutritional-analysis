@@ -29,9 +29,9 @@ const App = () => {
 
 	const handleAnalyze = async () => {
 		setLoading(true)
-        //setMarkdown('')
+        setMarkdown('')
 		try {
-			const response = await axios.post('http://localhost:3000/analyze', { ingredients: recipe })
+			const response = await axios.post(`${import.meta.env.VITE_APP_URL}/analyze`, { ingredients: recipe })
 			setMarkdown(response.data.nutrition)
 			console.log(markdown)
 		} catch (error) {
