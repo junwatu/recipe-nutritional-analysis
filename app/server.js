@@ -2,7 +2,7 @@ import path from 'path'
 import { URL } from 'url'
 import express from 'express'
 import { agent } from './libs/ai.js'
-//import { saveData, getAllData } from './griddbservices.js'
+import { saveData, getAllData } from './griddbservices.js'
 
 const app = express()
 // eslint-disable-next-line no-undef
@@ -34,19 +34,17 @@ app.post('/analyze', async (req, res) => {
 		}
 
 		console.log(nutritionData)
-		//await saveData(nutritionData)
+		await saveData(nutritionData)
 		res.json(data)
 	} catch (error) {
 		res.status(400).json({ error: error.message })
 	}
 })
 
-/**
 app.get('/nutritions', async (req, res) => {
 	const allNutritionsData = await getAllData()
 	res.json(allNutritionsData)
 })
-*/
 
 app.listen(port, hostname, () => {
 	console.log(`Server is running at http://${hostname}:${port}`)
